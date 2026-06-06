@@ -2,7 +2,7 @@
 
 client_id = "a4dcc01e66a192dcdc7f42f6b368dfbb"
 application_url = "https://example.com"
-embedded = true
+embedded = false
 name = "test-app"
 
 [access_scopes]
