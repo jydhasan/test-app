@@ -5,16 +5,16 @@ EXPOSE 3000
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+
 COPY package.json package-lock.json* ./
+COPY prisma ./prisma/
 
-RUN npm ci && npm cache clean --force
-
-COPY prisma ./prisma
+RUN npm ci --omit=dev && npm cache clean --force
+RUN npx prisma generate
 
 COPY . .
-
 RUN npm run build
-
-ENV NODE_ENV=production
 
 CMD ["npm", "run", "docker-start"]
